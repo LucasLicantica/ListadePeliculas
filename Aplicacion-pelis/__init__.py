@@ -28,5 +28,8 @@ def create_app(test_config=None):
     @app.route('/crash')
     def crash():
         return 'Hola soy crash'
+    
+    from . import db
+    db.init_app(app)
 
     return app
