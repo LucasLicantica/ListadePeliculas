@@ -5,15 +5,14 @@
 {% endblock %}
 
 {% block content %}
-  {% for post in posts %}
+  {% for m in peli %}
     <article class="post">
       <header>
         <div>
-          <h1>{{ post['title'] }}</h1>
-          <div class="about">by {{ post['username'] }} </div>
+          <h1>{{ m['titulo'] }}</h1>
+          <div class="about"> {{ m['lenguaje'] }} </div>
         </div>
       </header>
-      <p class="body">{{ post['body'] }}</p>
     </article>
 
   {% endfor %}
