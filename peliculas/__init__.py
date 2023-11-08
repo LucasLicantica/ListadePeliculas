@@ -34,12 +34,12 @@ def create_app(test_config=None):
 
     from . import category
     app.register_blueprint(category.bp)
-    app.add_url_rule('/', endpoint='index')
     from . import language
     app.register_blueprint(language.bp)
-    app.add_url_rule('/', endpoint='index')
     from . import actor
     app.register_blueprint(actor.bp)
-    app.add_url_rule('/', endpoint='index')
+    from . import pelis
+    app.register_blueprint(pelis.bp)
+    app.add_url_rule('/', endpoint='pelis.index')
 
     return app
