@@ -11,9 +11,9 @@ bp = Blueprint('category', __name__,url_prefix="/category/")
 @bp.route('/')
 def index():
     db = get_db()
-    peli = db.execute(
-        """SELECT f.name AS titulo, l.name AS lenguaje 
-         FROM film f JOIN category l ON c.category_id = f.category_id
-         ORDER BY f.film_id DESC"""
+    categorias = db.execute(
+        """SELECT c.name AS category, c.name AS categoria 
+         FROM film c JOIN category c ON l.category_id = f.category_id
+         ORDER BY c.film_id DESC"""
     ).fetchall()
-    return render_template('category/index.html', peli=peli)
+    return render_template('category/index.html', category=categorias)
