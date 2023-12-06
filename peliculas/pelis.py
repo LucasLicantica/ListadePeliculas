@@ -30,6 +30,8 @@ def detalle(id):
     ).fetchone()
     return render_template('peliculas/detalle.html', peli=peli)
 
+#----------------------------------json---------------------------------------------------
+
 @bpapi.route('/')
 def index_api():
     db = get_db()

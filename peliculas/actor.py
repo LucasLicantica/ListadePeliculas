@@ -22,11 +22,22 @@ def index():
 def detalle(id):
     db = get_db()
     actores = db.execute(
-        """SELECT first_name, last_name   
-         FROM actor ORDER BY first_name, last_name""", 
+        """SELECT first_name as nombre, last_name as apellido   
+         FROM actor ORDER BY first_name, last_name
+         WHERE actor_id = ?""", 
          (id,)
     ).fetchone()
-    return render_template('actores/detalle.html', actores=actores)
+
+    peliculas = db.execute(
+        """SELECT f.title AS titulo, l.name AS lenguaje, f.release_year, f.description
+         FROM film f JOIN language l ON l.language_id = f.language_id
+         WHERE f.film_id = ?""", 
+         (id,)
+    ).fetchone()
+
+    return render_template('peliculas/detalle.html', peliculas=peliculas, actores=actores)
+
+#----------------------------------json---------------------------------------------------
 
 @bpapi.route('/')
 def index_api():

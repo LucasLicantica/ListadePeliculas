@@ -22,11 +22,13 @@ def index():
 def detalle(id):
     db = get_db()
     languages = db.execute(
-        """SELECT l.name, l.language_id FROM language l 
+        """SELECT l.name as lenguages, l.language_id FROM language l 
          ORDER BY l.language_id DESC""", 
          (id,)
     ).fetchone()
     return render_template('languages/detalle.html', languages=languages)
+
+#----------------------------------json---------------------------------------------------
 
 @bpapi.route('/')
 def index_api():

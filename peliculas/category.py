@@ -13,7 +13,7 @@ bpapi = Blueprint('api_category', __name__, url_prefix='/api/category/')
 def index():
     db = get_db()
     categories = db.execute(
-        """SELECT c.name AS category, c.name AS categoria 
+        """SELECT c.name, c.name AS categoria 
          FROM film c JOIN category c ON l.category_id = f.category_id
          ORDER BY c.film_id DESC"""
     ).fetchall()
@@ -23,12 +23,14 @@ def index():
 def detalle(id):
     db = get_db()
     categories = db.execute(
-        """SELECT c.name AS category, c.name AS categoria 
+        """SELECT c.name AS categoria, c.name AS categoria 
          FROM film c JOIN category c ON l.category_id = f.category_id
          ORDER BY c.film_id DESC""", 
          (id,)
     ).fetchone()
     return render_template('categories/detalle.html', category=categories)
+
+#----------------------------------json---------------------------------------------------
 
 @bpapi.route('/')
 def index_api():

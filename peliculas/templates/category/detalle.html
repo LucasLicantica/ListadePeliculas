@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}peliculas{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <article class="post">
+      <header>
+        <div>
+          <h1>{{ categoria ['nombre'] }}</h1>
+         {% for peli in peliculas %}
+            <article class="post">
+            <header>
+            <div>
+                <h1>{{ c['name'] }}</h1>
+            </div>
+      </header>
+    </article>
+        </div>
+      </header>
+    </article>
+
+{% endblock %}
